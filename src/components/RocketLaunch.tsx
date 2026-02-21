@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent, useSpring } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 export const RocketLaunch: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [hasLaunched, setHasLaunched] = useState(false);
 
     // Track scroll progress within a very tall 400vh container
     const { scrollYProgress: rawProgress } = useScroll({
@@ -16,13 +15,6 @@ export const RocketLaunch: React.FC = () => {
         stiffness: 80,
         damping: 20,
         restDelta: 0.001
-    });
-
-    // Mark as launched once we complete the scroll, effectively removing the component
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        if (latest >= 0.98 && !hasLaunched) {
-            setHasLaunched(true);
-        }
     });
 
     // We will break the scroll range (0 to 1) into distinct cinematic phases:
@@ -89,10 +81,6 @@ export const RocketLaunch: React.FC = () => {
         [0.5, 0.7],
         [1, 0]
     );
-
-    if (hasLaunched) {
-        return <div className="hidden" aria-hidden="true" />;
-    }
 
     return (
         // The mighty 400vh scrolling container to hold the sequence

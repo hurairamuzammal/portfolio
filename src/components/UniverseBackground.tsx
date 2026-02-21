@@ -77,7 +77,7 @@ export const UniverseBackground: React.FC<UniverseProps> = ({ mousePosition }) =
 
         const initBackground = () => {
             stars = [];
-            const numStars = Math.floor((width * height) / 8000); // Increased regular stars to fill the universe
+            const numStars = Math.floor((width * height) / 16000); // Reduced regular stars to fill the universe
             for (let i = 0; i < numStars; i++) {
                 stars.push({
                     x: Math.random() * width,
@@ -180,8 +180,8 @@ export const UniverseBackground: React.FC<UniverseProps> = ({ mousePosition }) =
         ];
 
         const addComet = () => {
-            // Increase frequency of shooting stars slightly so they are visible below
-            if (Math.random() > 0.94) {
+            // Very rare frequency of shooting stars (1%)
+            if (Math.random() > 0.99) {
                 const startX = Math.random() * width * 1.5;
                 const startY = -50;
                 const chosenColor = cometColors[Math.floor(Math.random() * cometColors.length)];
