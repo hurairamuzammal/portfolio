@@ -36,6 +36,7 @@ interface Planet {
     orbitSpeed: number;
     craterPositions: { x: number, y: number, r: number }[];
     type: string;
+    parallaxSpeed: number;
 }
 
 interface UniverseProps {
@@ -92,33 +93,56 @@ export const UniverseBackground: React.FC<UniverseProps> = ({ mousePosition }) =
             }
 
             planets = [
-                { // Jupiter (Giant, orange/brown, rings effect simulated by crater bands)
-                    x: width * 0.85, y: height * 0.6, radius: 150, // Moved lower
-                    color: '#cb8b51', angle: 0, rotationSpeed: 0.00015,
-                    orbitRadius: 0, orbitX: width * 0.85, orbitY: height * 0.6, orbitSpeed: 0,
-                    craterPositions: Array(15).fill(0).map(() => ({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 1, r: Math.random() * 30 + 10 })),
-                    type: 'jupiter'
+                // --- TOP PORTION ---
+                { // Saturn (Pale yellow/gold with a large distinct ring)
+                    x: width * 0.75, y: height * 0.15, radius: 55,
+                    color: '#e2bf7d', angle: Math.PI / 6, rotationSpeed: 0.0008,
+                    orbitRadius: 0, orbitX: width * 0.75, orbitY: height * 0.15, orbitSpeed: 0,
+                    craterPositions: Array(6).fill(0).map(() => ({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2, r: Math.random() * 8 + 2 })),
+                    type: 'saturn', parallaxSpeed: 0.1
                 },
                 { // Earth (Blue/green, vibrant)
-                    x: width * 0.1, y: height * 0.25, radius: 65, // Moved higher left
+                    x: width * 0.1, y: height * 0.25, radius: 65,
                     color: '#1a5b9c', angle: 0, rotationSpeed: 0.0005,
                     orbitRadius: 0, orbitX: width * 0.1, orbitY: height * 0.25, orbitSpeed: 0,
                     craterPositions: Array(12).fill(0).map(() => ({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2, r: Math.random() * 15 + 3 })),
-                    type: 'earth'
-                },
-                { // Saturn (Pale yellow/gold with a large distinct ring)
-                    x: width * 0.75, y: height * 0.15, radius: 55, // Top right
-                    color: '#e2bf7d', angle: Math.PI / 6, rotationSpeed: 0.0008, // Tilted
-                    orbitRadius: 0, orbitX: width * 0.75, orbitY: height * 0.15, orbitSpeed: 0,
-                    craterPositions: Array(6).fill(0).map(() => ({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2, r: Math.random() * 8 + 2 })),
-                    type: 'saturn'
+                    type: 'earth', parallaxSpeed: 0.15
                 },
                 { // Hubble Telescope (Small, highly detailed, rotating very slowly)
-                    x: width * 0.3, y: height * 0.8, radius: 20, // Bottom leftish
-                    color: '#c0c0c0', angle: -Math.PI / 4, rotationSpeed: 0.0002, // Tilted upwards
+                    x: width * 0.3, y: height * 0.8, radius: 20,
+                    color: '#c0c0c0', angle: -Math.PI / 4, rotationSpeed: 0.0002,
                     orbitRadius: 0, orbitX: width * 0.3, orbitY: height * 0.8, orbitSpeed: 0,
-                    craterPositions: [], // Not used for telescope
-                    type: 'hubble'
+                    craterPositions: [],
+                    type: 'hubble', parallaxSpeed: 0.05
+                },
+                // --- BOTTOM PORTION (Scroll Down to see) ---
+                { // Mars (Red/orange, small, fast rotation)
+                    x: width * 0.8, y: height * 1.1, radius: 35,
+                    color: '#c1440e', angle: 0, rotationSpeed: 0.001,
+                    orbitRadius: 0, orbitX: width * 0.8, orbitY: height * 1.1, orbitSpeed: 0,
+                    craterPositions: Array(8).fill(0).map(() => ({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2, r: Math.random() * 6 + 2 })),
+                    type: 'mars', parallaxSpeed: 0.3
+                },
+                { // Jupiter (Giant, orange/brown, rings effect simulated by crater bands)
+                    x: width * 0.2, y: height * 1.8, radius: 150,
+                    color: '#cb8b51', angle: 0, rotationSpeed: 0.00015,
+                    orbitRadius: 0, orbitX: width * 0.2, orbitY: height * 1.8, orbitSpeed: 0,
+                    craterPositions: Array(15).fill(0).map(() => ({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 1, r: Math.random() * 30 + 10 })),
+                    type: 'jupiter', parallaxSpeed: 0.4
+                },
+                { // Pluto (very distant, tiny, gray)
+                    x: width * 0.85, y: height * 2.8, radius: 12,
+                    color: '#7a8087', angle: 0, rotationSpeed: 0.0025,
+                    orbitRadius: 0, orbitX: width * 0.85, orbitY: height * 2.8, orbitSpeed: 0,
+                    craterPositions: Array(2).fill(0).map(() => ({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 2, r: Math.random() * 2 + 1 })),
+                    type: 'pluto', parallaxSpeed: 0.45
+                },
+                { // Neptune (Deep icy blue gas giant)
+                    x: width * 0.15, y: height * 3.3, radius: 75,
+                    color: '#2c4c82', angle: 0, rotationSpeed: 0.0006,
+                    orbitRadius: 0, orbitX: width * 0.15, orbitY: height * 3.3, orbitSpeed: 0,
+                    craterPositions: Array(10).fill(0).map(() => ({ x: (Math.random() - 0.5) * 2, y: (Math.random() - 0.5) * 1.5, r: Math.random() * 10 + 2 })),
+                    type: 'neptune', parallaxSpeed: 0.5
                 }
             ];
         };
@@ -156,8 +180,8 @@ export const UniverseBackground: React.FC<UniverseProps> = ({ mousePosition }) =
         ];
 
         const addComet = () => {
-            // High threshold to significantly reduce the frequency of shooting stars
-            if (Math.random() > 0.98) {
+            // Increase frequency of shooting stars slightly so they are visible below
+            if (Math.random() > 0.94) {
                 const startX = Math.random() * width * 1.5;
                 const startY = -50;
                 const chosenColor = cometColors[Math.floor(Math.random() * cometColors.length)];
@@ -183,8 +207,8 @@ export const UniverseBackground: React.FC<UniverseProps> = ({ mousePosition }) =
             const mouseXOffset = (mouseRef.current.x - width / 2) * 0.02;
             const mouseYOffset = (mouseRef.current.y - height / 2) * 0.02;
 
-            // The massive multiplier for scroll movement to simulate flying
-            const scrollOffset = currentScrollY * 0.5;
+            // The multiplier for scroll movement to simulate flying
+            const scrollOffset = currentScrollY;
 
             // Draw Planets
             planets.forEach(p => {
@@ -194,16 +218,9 @@ export const UniverseBackground: React.FC<UniverseProps> = ({ mousePosition }) =
                 let currentX = p.x;
                 let currentY = p.y;
 
-                // Parallax 3D depth perspective based on scroll & mouse
+                // Parallax 3D depth perspective based on scroll & mouse (using individual parallax speeds)
                 currentX = p.orbitX - mouseXOffset * (150 / p.radius);
-                currentY = p.orbitY - mouseYOffset * (150 / p.radius) - (scrollOffset * (p.radius / 100)); // Larger planets move faster
-
-                // Wrap planets vertically for infinite scroll effect
-                if (currentY < -p.radius * 2) {
-                    p.orbitY += height + p.radius * 4;
-                } else if (currentY > height + p.radius * 2) {
-                    p.orbitY -= height + p.radius * 4;
-                }
+                currentY = p.orbitY - mouseYOffset * (150 / p.radius) - (scrollOffset * p.parallaxSpeed);
 
                 ctx.save();
                 ctx.translate(currentX, currentY);
@@ -323,13 +340,15 @@ export const UniverseBackground: React.FC<UniverseProps> = ({ mousePosition }) =
                     ctx.fillStyle = 'rgba(168, 114, 74, 0.4)'; // Darker bands
                 } else if (p.type === 'saturn') {
                     ctx.fillStyle = 'rgba(180, 150, 100, 0.5)'; // Darker bands for saturn
+                } else if (p.type === 'neptune') {
+                    ctx.fillStyle = 'rgba(100, 150, 255, 0.3)'; // Wintry high-speed winds
                 } else {
                     ctx.fillStyle = 'rgba(0, 0, 0, 0.3)'; // Default craters
                 }
 
                 p.craterPositions.forEach(c => {
                     let cx, cy;
-                    if (p.type === 'jupiter' || p.type === 'saturn') {
+                    if (p.type === 'jupiter' || p.type === 'saturn' || p.type === 'neptune') {
                         // stretch craters to look like bands for gas giants
                         cx = c.x * (p.radius * 0.8);
                         cy = c.y * (p.radius * 0.8);

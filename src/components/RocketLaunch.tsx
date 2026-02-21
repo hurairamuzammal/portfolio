@@ -118,7 +118,7 @@ export const RocketLaunch: React.FC = () => {
                         style={{ x: shakeX, y: shakeY }}
                     >
                         {/* High Fidelity Starship Structure */}
-                        <div className="relative w-[180px] h-[700px] md:w-[240px] md:h-[900px] flex flex-col items-center drop-shadow-[0_0_50px_rgba(255,255,255,0.15)]">
+                        <div className="relative w-[180px] h-[700px] md:w-[240px] md:h-[900px] flex flex-col items-center" style={{ willChange: "transform" }}>
 
                             {/* Nose Cone */}
                             <div className="w-full h-[30%] bg-gradient-to-b from-[#e2e8f0] via-[#94a3b8] to-[#475569] rounded-[50%_50%_0_0/100%_100%_0_0] relative overflow-hidden border-b-2 border-[#1e293b]">
@@ -163,61 +163,60 @@ export const RocketLaunch: React.FC = () => {
                         </div>
 
                         {/* =======================================================
-                            MASSIVE EXHAUST & FIRE SYSTEM (Triggers on Scroll)
+                            MASSIVE EXHAUST & FIRE SYSTEM (Hardware Accelerated)
                         ======================================================= */}
-                        <motion.div className="absolute top-[95%] flex flex-col items-center justify-start w-full z-0 origin-top pointer-events-none">
+                        <motion.div className="absolute top-[95%] flex flex-col items-center justify-start w-full z-0 origin-top pointer-events-none" style={{ willChange: "transform" }}>
 
-                            {/* 1. Blinding Ignition Flash */}
+                            {/* 1. Blinding Ignition Flash (SVG-like pure CSS radial gradient) */}
                             <motion.div
-                                className="absolute top-0 w-[400px] h-[400px] bg-white rounded-full mix-blend-screen"
+                                className="absolute top-[-50px] w-[500px] h-[500px] rounded-full"
                                 style={{
                                     scale: ignitionScale,
                                     opacity: ignitionOpacity,
-                                    boxShadow: '0 0 150px 100px rgba(56, 189, 248, 0.8), 0 0 300px 200px rgba(255, 255, 255, 0.5)'
+                                    willChange: "transform, opacity",
+                                    background: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(56, 189, 248, 0.6) 30%, transparent 70%)'
                                 }}
                             />
 
                             {/* 2. The Mach Diamond Core (White/Cyan Hot Plasma) */}
                             <motion.div
-                                className="absolute top-0 w-[100px] md:w-[140px] bg-white rounded-t-full blur-[2px]"
+                                className="absolute top-0 w-[100px] md:w-[140px] rounded-t-full"
                                 style={{
                                     height: plumeHeight,
                                     opacity: plumeOpacity,
-                                    boxShadow: '0 0 50px 20px #ffffff, 0 0 100px 50px #38bdf8'
+                                    willChange: "height, opacity",
+                                    background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(56, 189, 248, 0.8) 20%, transparent 100%)'
                                 }}
-                            >
-                                {/* Mach Diamonds (Repeating pattern in core) */}
-                                <div className="w-full h-full opacity-60 bg-[repeating-linear-gradient(to_bottom,_transparent,_transparent_40px,_rgba(255,255,255,0.8)_60px,_transparent_80px)]"></div>
-                            </motion.div>
+                            />
 
                             {/* 3. The Massive Orange/Red Outer Plume */}
                             <motion.div
-                                className="absolute top-10 w-[250px] md:w-[350px] bg-gradient-to-b from-[#f97316] via-[#dc2626] to-transparent rounded-t-full blur-[15px] mix-blend-screen"
+                                className="absolute top-10 w-[250px] md:w-[350px] rounded-t-full mt-[-10px]"
                                 style={{
                                     height: plumeHeight,
-                                    opacity: plumeOpacity
+                                    opacity: plumeOpacity,
+                                    willChange: "height, opacity",
+                                    background: 'linear-gradient(to bottom, rgba(249, 115, 22, 0.9) 0%, rgba(220, 38, 38, 0.7) 30%, transparent 100%)'
                                 }}
-                            >
-                                <motion.div
-                                    className="w-full h-full absolute inset-0 bg-gradient-to-t from-transparent to-[#fef08a] opacity-50 blur-[30px]"
-                                    animate={{ opacity: [0.4, 0.8, 0.4] }}
-                                    transition={{ repeat: Infinity, duration: 0.05 }}
-                                />
-                            </motion.div>
+                            />
 
                             {/* 4. Billowing Base Smoke & Shockwaves */}
                             <motion.div
-                                className="absolute top-[50%] w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(100,116,139,0.8)_0%,_transparent_70%)] rounded-full blur-[40px] mix-blend-screen"
+                                className="absolute top-[50%] w-[600px] h-[600px] rounded-full"
                                 style={{
                                     scale: smokeScale,
-                                    opacity: smokeOpacity
+                                    opacity: smokeOpacity,
+                                    willChange: "transform, opacity",
+                                    background: 'radial-gradient(circle, rgba(148,163,184,0.4) 0%, transparent 60%)'
                                 }}
                             />
                             <motion.div
-                                className="absolute top-[80%] w-[800px] h-[800px] bg-[radial-gradient(circle,_rgba(15,23,42,0.9)_0%,_transparent_60%)] rounded-full blur-[60px]"
+                                className="absolute top-[80%] w-[800px] h-[800px] rounded-full"
                                 style={{
                                     scale: smokeScale,
-                                    opacity: smokeOpacity
+                                    opacity: smokeOpacity,
+                                    willChange: "transform, opacity",
+                                    background: 'radial-gradient(circle, rgba(15,23,42,0.8) 0%, transparent 60%)'
                                 }}
                             />
 

@@ -9,6 +9,29 @@ import {
 import { UniverseBackground } from './components/UniverseBackground';
 import { RocketLaunch } from './components/RocketLaunch';
 
+const AnimatedClock = () => {
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => setTime(new Date()), 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const hours = time.getHours().toString().padStart(2, '0');
+    const minutes = time.getMinutes().toString().padStart(2, '0');
+    const seconds = time.getSeconds().toString().padStart(2, '0');
+
+    return (
+        <div className="flex items-center gap-2 font-mono text-[#38bdf8] bg-[#0f172a]/80 backdrop-blur-md border border-[#38bdf8]/30 px-4 py-2 rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.1)] hover:shadow-[0_0_30px_rgba(56,189,248,0.3)] transition-shadow">
+            <span className="text-xl font-black tracking-widest">{hours}</span>
+            <span className="text-xl font-black animate-[pulse_1s_ease-in-out_infinite] opacity-80 text-[#0ea5e9]">:</span>
+            <span className="text-xl font-black tracking-widest">{minutes}</span>
+            <span className="text-sm font-bold opacity-50 ml-1 mt-1">{seconds}</span>
+            <span className="ml-3 text-[10px] font-bold text-slate-400 tracking-widest uppercase bg-white/5 px-2 py-1 rounded-md">PKT</span>
+        </div>
+    );
+};
+
 const GITHUB_PROJECTS = [
     {
         name: "Dictionary-DataStructure",
@@ -392,6 +415,9 @@ function App() {
                                 </a>
                                 <div className="flex items-center md:justify-end gap-3 text-slate-400 select-all group">
                                     <span className="font-medium leading-relaxed max-w-[150px]">Lahore, Pakistan</span>
+                                </div>
+                                <div className="flex md:justify-end mt-2 cursor-default">
+                                    <AnimatedClock />
                                 </div>
                             </div>
 
