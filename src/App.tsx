@@ -109,7 +109,12 @@ function App() {
                         Muhammad Abu Huraira
                     </div>
 
-
+                    <div className="hidden md:flex items-center gap-8">
+                        <a href="#about" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">About</a>
+                        <a href="#projects" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">Projects</a>
+                        <a href="#experience" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">Experience</a>
+                        <a href="#contact" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">Contact Us</a>
+                    </div>
                 </div>
             </nav>
 
@@ -183,7 +188,7 @@ function App() {
                             <Smartphone className="w-6 h-6 lg:w-7 lg:h-7 text-white group-hover:text-[#818cf8] transition-colors duration-500" />
                         </div>
                         <div className="aspect-[3.5/5] rounded-[2.5rem] overflow-hidden relative border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] group-hover:shadow-[0_20px_60px_-15px_rgba(56,189,248,0.25)] transition-all duration-500 cursor-pointer">
-                            <img src="/assets/me.jpg" alt="Muhammad Abu Huraira" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                            <img src="/me.jpg" alt="Muhammad Abu Huraira" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#070b19] via-[#070b19]/40 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500"></div>
                         </div>
                     </motion.div>
@@ -301,7 +306,7 @@ function App() {
                         <h2 className="text-4xl font-black text-white mb-16 tracking-tight">Resources</h2>
                         <div className="flex flex-col md:flex-row gap-6">
                             <motion.a
-                                href="/assets/cricket_world.pdf"
+                                href="/cricket_world.pdf"
                                 target="_blank"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -319,7 +324,7 @@ function App() {
                             </motion.a>
 
                             <motion.a
-                                href="/assets/Notlyfe Posters-1 conv 3_compressed.pdf"
+                                href="/Notlyfe Posters-1 conv 3_compressed.pdf"
                                 target="_blank"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -342,7 +347,7 @@ function App() {
             </main>
 
             {/* Footer Layer */}
-            <footer className="relative z-10 py-12 px-6 lg:px-12 border-t border-white/5 bg-[#0f172a]/50">
+            <footer id="contact" className="relative z-10 py-12 px-6 lg:px-12 border-t border-white/5 bg-[#0f172a]/50">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="flex flex-col gap-2 text-center md:text-left">
                         <span className="text-2xl font-black text-white tracking-tight">Muhammad Abu Huraira.</span>
