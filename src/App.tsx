@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { ChevronRight, Github, Linkedin, ExternalLink, Download, Code2, Monitor, Brain, Smartphone, Mail } from 'lucide-react';
+import {
+    SiCplusplus, SiDart, SiPython, SiNumpy, SiTensorflow, SiPandas, SiPytorch, SiKeras,
+    SiFirebase, SiVercel, SiFlutter, SiSqlite, SiSupabase, SiFigma, SiCanva, SiGimp
+} from 'react-icons/si';
+import { UniverseBackground } from './components/UniverseBackground';
+import { RocketLaunch } from './components/RocketLaunch';
 
 const GITHUB_PROJECTS = [
     {
@@ -64,6 +70,25 @@ const EDUCATION = [
     }
 ];
 
+const TECH_LOGOS = [
+    { name: "C++", Icon: SiCplusplus, color: "text-[#00599C]", hoverBorder: "hover:border-[#00599C]" },
+    { name: "Dart", Icon: SiDart, color: "text-[#0175C2]", hoverBorder: "hover:border-[#0175C2]" },
+    { name: "Python", Icon: SiPython, color: "text-[#3776AB]", hoverBorder: "hover:border-[#3776AB]" },
+    { name: "Firebase", Icon: SiFirebase, color: "text-[#FFCA28]", hoverBorder: "hover:border-[#FFCA28]" },
+    { name: "Vercel", Icon: SiVercel, color: "text-white", hoverBorder: "hover:border-white" },
+    { name: "Flutter", Icon: SiFlutter, color: "text-[#02569B]", hoverBorder: "hover:border-[#02569B]" },
+    { name: "SQLite", Icon: SiSqlite, color: "text-[#003B57]", hoverBorder: "hover:border-[#003B57]" },
+    { name: "Supabase", Icon: SiSupabase, color: "text-[#3ECF8E]", hoverBorder: "hover:border-[#3ECF8E]" },
+    { name: "Figma", Icon: SiFigma, color: "text-[#F24E1E]", hoverBorder: "hover:border-[#F24E1E]" },
+    { name: "Canva", Icon: SiCanva, color: "text-[#00C4CC]", hoverBorder: "hover:border-[#00C4CC]" },
+    { name: "GIMP", Icon: SiGimp, color: "text-[#5C5543]", hoverBorder: "hover:border-[#5C5543]" },
+    { name: "NumPy", Icon: SiNumpy, color: "text-[#013243]", hoverBorder: "hover:border-[#013243]" },
+    { name: "TensorFlow", Icon: SiTensorflow, color: "text-[#FF6F00]", hoverBorder: "hover:border-[#FF6F00]" },
+    { name: "Pandas", Icon: SiPandas, color: "text-[#150458]", hoverBorder: "hover:border-[#150458]" },
+    { name: "PyTorch", Icon: SiPytorch, color: "text-[#EE4C2C]", hoverBorder: "hover:border-[#EE4C2C]" },
+    { name: "Keras", Icon: SiKeras, color: "text-[#D00000]", hoverBorder: "hover:border-[#D00000]" },
+];
+
 function App() {
     const [scrolled, setScrolled] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -85,7 +110,7 @@ function App() {
     }, []);
 
     return (
-        <div className="min-h-screen relative overflow-x-hidden bg-[#070b19]">
+        <div className="min-h-screen bg-[#000000] text-white relative font-sans w-full max-w-[100vw] overflow-x-hidden" style={{ overflowX: 'clip' }}>
             {/* Global Spotlight Effect */}
             <div
                 className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300"
@@ -94,17 +119,11 @@ function App() {
                 }}
             />
 
-            <div className="fixed inset-0 z-0 pointer-events-none grid-overlay"></div>
+            <UniverseBackground mousePosition={mousePosition} />
 
             {/* Navigation */}
-            <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${scrolled
-                ? "py-4"
-                : "py-8"
-                }`}>
-                <div className={`mx-auto transition-all duration-500 ease-in-out flex items-center justify-between ${scrolled
-                    ? "max-w-4xl px-8 py-3 bg-[#0f172a]/70 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]"
-                    : "max-w-6xl px-6 lg:px-12 bg-transparent border-transparent"
-                    }`}>
+            <nav className="fixed top-6 w-full z-50 transition-all duration-500 ease-in-out px-6">
+                <div className="mx-auto rounded-full border border-[#38bdf8]/30 bg-[#020617]/60 backdrop-blur-xl shadow-[0_0_20px_rgba(56,189,248,0.15)] flex items-center justify-between max-w-5xl px-8 py-4 transition-all duration-500 hover:shadow-[0_0_30px_rgba(56,189,248,0.3)] hover:border-[#38bdf8]/50">
                     <div className="text-xl font-bold text-[#38bdf8]">
                         Muhammad Abu Huraira
                     </div>
@@ -113,19 +132,21 @@ function App() {
                         <a href="#about" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">About</a>
                         <a href="#projects" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">Projects</a>
                         <a href="#experience" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">Experience</a>
-                        <a href="#contact" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">Contact Us</a>
+                        <a href="#contact" className="text-sm font-semibold text-slate-300 hover:text-[#38bdf8] transition-colors">Contact</a>
                     </div>
                 </div>
             </nav>
 
-            <main className="relative z-10 pt-32 pb-24 px-6 lg:px-12 max-w-6xl mx-auto flex flex-col gap-32">
+            <main className="relative z-10 pt-40 pb-24 px-6 lg:px-12 max-w-6xl mx-auto w-full flex flex-col gap-32">
+
+
 
                 {/* Hero Section */}
                 <motion.section
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24 min-h-[60vh]"
+                    className="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24 min-h-[60vh] w-full p-8 md:p-12 lg:p-16 rounded-[3rem] bg-[#020617]/40 backdrop-blur-xl border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.5)]"
                     id="about"
                 >
                     <div className="flex-1 flex flex-col items-start gap-8">
@@ -134,9 +155,9 @@ function App() {
                             Open for New Projects
                         </div>
 
-                        <h1 className="text-5xl sm:text-6xl lg:text-[76px] font-black leading-[1.1] tracking-tight -ml-1">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight -ml-1">
                             <span className="text-white block mb-2">Hello! I'm</span>
-                            <div className="h-[120px] sm:h-[140px] lg:h-[180px] flex items-start">
+                            <div className="min-h-[120px] sm:min-h-[140px] lg:min-h-[160px] flex items-start w-full">
                                 <TypeAnimation
                                     sequence={[
                                         'Muhammad Abu Huraira.', 2500,
@@ -146,7 +167,7 @@ function App() {
                                     ]}
                                     wrapper="span"
                                     speed={50}
-                                    className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] to-[#67e8f9] block"
+                                    className="text-transparent bg-clip-text bg-gradient-to-r from-[#60a5fa] to-[#67e8f9] block whitespace-normal break-words"
                                     repeat={Infinity}
                                 />
                             </div>
@@ -176,7 +197,7 @@ function App() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative w-full max-w-[340px] lg:max-w-[420px] flex-shrink-0 group"
+                        className="relative w-full max-w-[300px] lg:max-w-[380px] flex-shrink-0 group"
                     >
                         <div className="absolute -left-6 lg:-left-12 top-20 w-20 h-20 lg:w-24 lg:h-24 bg-[#1e293b] rounded-[1.5rem] flex items-center justify-center border border-white/5 shadow-2xl z-20 group-hover:-translate-x-3 group-hover:-translate-y-3 group-hover:scale-110 group-hover:bg-[#0f172a] transition-all duration-500">
                             <Code2 className="w-8 h-8 lg:w-10 lg:h-10 text-white group-hover:text-[#38bdf8] transition-colors duration-500" />
@@ -189,17 +210,19 @@ function App() {
                         </div>
                         <div className="aspect-[3.5/5] rounded-[2.5rem] overflow-hidden relative border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)] group-hover:shadow-[0_20px_60px_-15px_rgba(56,189,248,0.25)] transition-all duration-500 cursor-pointer">
                             <img src="/me.jpg" alt="Muhammad Abu Huraira" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#070b19] via-[#070b19]/40 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/40 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500"></div>
                         </div>
                     </motion.div>
                 </motion.section>
 
-                {/* Tech Skills Marquee Fix: Use a full width container trick */}
+                {/* Tech Skills Marquee (The Small Different Section) */}
                 <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
-                    <section className="relative overflow-hidden py-16 border-y border-white/5 bg-white/[0.01]">
-                        <div className="absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-[#070b19] to-transparent z-10 pointer-events-none mix-blend-multiply"></div>
-                        <div className="absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-[#070b19] to-transparent z-10 pointer-events-none mix-blend-multiply"></div>
-                        <div className="flex w-max animate-marquee items-center gap-16">
+                    <section className="relative overflow-hidden py-24 bg-[#0a0f1c] border-y border-[#38bdf8]/20 shadow-[0_0_50px_rgba(56,189,248,0.05)_inset]">
+                        <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#38bdf8]/50 to-transparent"></div>
+                        <div className="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-[#38bdf8]/50 to-transparent"></div>
+                        <div className="absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-[#0a0f1c] to-transparent z-10 pointer-events-none"></div>
+                        <div className="absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-[#0a0f1c] to-transparent z-10 pointer-events-none"></div>
+                        <div className="flex w-max animate-marquee items-center gap-16 py-4">
                             {[...Array(3)].map((_, i) => (
                                 <div key={i} className="flex gap-16 items-center flex-nowrap shrink-0">
                                     {['Flutter', 'Dart', 'Python', 'AI Model Finetuning', 'Full Stack Apps'].map((tech) => (
@@ -212,9 +235,33 @@ function App() {
                         </div>
                     </section>
                 </div>
+            </main>
+
+            {/* --- ROCKET LAUNCH TRANSITION --- */}
+            <RocketLaunch />
+
+            <main className="relative z-10 py-24 px-6 lg:px-12 max-w-6xl mx-auto w-full flex flex-col gap-32">
+
+                {/* Tech Stack Universe Section */}
+                <section id="tech-stack" className="scroll-mt-32 w-full p-8 md:p-12 lg:p-16 rounded-[3rem] bg-[#020617]/40 backdrop-blur-xl border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+                    <h2 className="text-4xl font-black text-white mb-16 tracking-tight text-center">Tools & Technologies</h2>
+                    <div className="flex flex-wrap justify-center gap-6 md:gap-8 pt-4 pb-12">
+                        {TECH_LOGOS.map((tech, j) => (
+                            <div
+                                key={j}
+                                className={`flex flex-col items-center justify-center gap-4 w-28 h-28 md:w-32 md:h-32 rounded-3xl bg-[#0f172a] border border-white/5 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] cursor-pointer group ${tech.hoverBorder} hover:bg-[#1e293b]/50`}
+                            >
+                                <tech.Icon className={`w-10 h-10 md:w-12 md:h-12 ${tech.color} opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg`} />
+                                <span className="text-slate-400 font-semibold text-xs md:text-sm tracking-wider uppercase group-hover:text-white transition-colors">
+                                    {tech.name}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
                 {/* Projects Section */}
-                <section id="projects" className="scroll-mt-32">
+                <section id="projects" className="scroll-mt-32 w-full p-8 md:p-12 lg:p-16 rounded-[3rem] bg-[#020617]/40 backdrop-blur-xl border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
                     <h2 className="text-4xl font-black text-white mb-16 tracking-tight">Featured Projects</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -228,7 +275,7 @@ function App() {
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
                                 key={idx}
-                                className="flex flex-col justify-start gap-6 w-full p-10 rounded-[2.5rem] bg-[#1e293b]/20 border border-white/5 hover:bg-[#1e293b]/40 hover:border-white/10 transition-all group relative overflow-hidden"
+                                className="flex flex-col justify-start gap-6 w-full p-10 rounded-[2.5rem] bg-[#020617]/80 backdrop-blur-xl border border-white/10 hover:bg-[#0f172a]/90 hover:border-[#38bdf8]/30 hover:shadow-[0_0_30px_rgba(56,189,248,0.15)] transition-all group relative overflow-hidden"
                             >
                                 <div className="absolute top-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:scale-110">
                                     <ExternalLink className="w-6 h-6 text-[#38bdf8]" />
@@ -237,9 +284,9 @@ function App() {
                                     <div className="w-16 h-16 rounded-[1.2rem] bg-[#0f172a] border border-white/5 flex items-center justify-center flex-shrink-0 backdrop-blur-sm group-hover:bg-[#38bdf8]/10 group-hover:border-[#38bdf8]/30 transition-colors">
                                         <Github className="w-8 h-8 text-white group-hover:text-[#38bdf8] transition-colors" />
                                     </div>
-                                    <div className="flex-1 max-w-2xl flex flex-col">
-                                        <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3 group-hover:text-[#38bdf8] transition-colors leading-tight tracking-tight">{project.name}</h3>
-                                        <p className="text-base lg:text-lg text-slate-400 font-light leading-relaxed flex-1">{project.description}</p>
+                                    <div className="flex-1 max-w-full flex flex-col pt-2">
+                                        <h3 className="text-xl lg:text-2xl font-bold text-white mb-3 group-hover:text-[#38bdf8] transition-colors leading-tight tracking-tight break-all md:break-words">{project.name}</h3>
+                                        <p className="text-sm lg:text-base text-slate-400 font-light leading-relaxed flex-1">{project.description}</p>
                                     </div>
                                     <div className="flex items-center gap-3 mt-auto pt-4 w-full">
                                         <div className="w-3 h-3 rounded-full bg-[#0ea5e9] shadow-[0_0_12px_rgba(14,165,233,0.8)] group-hover:scale-125 transition-transform"></div>
@@ -254,7 +301,7 @@ function App() {
                 {/* Experience & Resources Vertical Layout */}
                 <section className="flex flex-col gap-32">
                     {/* Experience Section */}
-                    <div id="experience" className="scroll-mt-32">
+                    <div id="experience" className="scroll-mt-32 w-full p-8 md:p-12 lg:p-16 rounded-[3rem] bg-[#020617]/40 backdrop-blur-xl border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
                         <h2 className="text-4xl font-black text-white mb-16 tracking-tight">Experience</h2>
                         <div className="flex flex-col">
                             {LINKEDIN_PROJECTS.map((exp, idx) => (
@@ -277,32 +324,8 @@ function App() {
                         </div>
                     </div>
 
-                    {/* Education Section */}
-                    <div id="education" className="scroll-mt-32">
-                        <h2 className="text-4xl font-black text-white mb-16 tracking-tight">Education</h2>
-                        <div className="flex flex-col">
-                            {EDUCATION.map((edu, idx) => (
-                                <motion.div
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: idx * 0.1 }}
-                                    key={idx}
-                                    className="border-b border-white/10 py-10 flex flex-col group"
-                                >
-                                    <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
-                                        <h3 className="text-2xl font-bold text-white group-hover:text-[#818cf8] transition-colors">{edu.degree}</h3>
-                                        <span className="text-sm font-bold text-slate-400 tracking-widest uppercase">{edu.date}</span>
-                                    </div>
-                                    <h4 className="text-[#0ea5e9] font-semibold text-lg mb-6">{edu.institution}</h4>
-                                    <p className="text-lg text-slate-400 font-light leading-relaxed">{edu.description}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-
                     {/* Resources Section */}
-                    <div id="resources" className="scroll-mt-32">
+                    <div id="resources" className="scroll-mt-32 w-full p-8 md:p-12 lg:p-16 rounded-[3rem] bg-[#020617]/40 backdrop-blur-xl border border-white/5 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
                         <h2 className="text-4xl font-black text-white mb-16 tracking-tight">Resources</h2>
                         <div className="flex flex-col md:flex-row gap-6">
                             <motion.a
@@ -311,7 +334,7 @@ function App() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="flex items-center gap-8 p-8 rounded-3xl bg-[#1e293b]/50 border border-white/5 hover:bg-[#1e293b] hover:border-white/20 transition-all group"
+                                className="flex items-center gap-8 p-8 rounded-3xl bg-[#020617]/80 backdrop-blur-xl border border-white/10 hover:bg-[#0f172a]/90 hover:border-[#38bdf8]/30 hover:shadow-[0_0_30px_rgba(56,189,248,0.15)] transition-all group"
                             >
                                 <div className="w-16 h-16 rounded-[1.2rem] bg-indigo-500/10 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
                                     <Code2 className="w-8 h-8" />
@@ -330,7 +353,7 @@ function App() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 }}
-                                className="flex items-center gap-8 p-8 rounded-3xl bg-[#1e293b]/50 border border-white/5 hover:bg-[#1e293b] hover:border-white/20 transition-all group"
+                                className="flex items-center gap-8 p-8 rounded-3xl bg-[#020617]/80 backdrop-blur-xl border border-white/10 hover:bg-[#0f172a]/90 hover:border-[#38bdf8]/30 hover:shadow-[0_0_30px_rgba(56,189,248,0.15)] transition-all group"
                             >
                                 <div className="w-16 h-16 rounded-[1.2rem] bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
                                     <Monitor className="w-8 h-8" />
@@ -346,25 +369,53 @@ function App() {
                 </section>
             </main>
 
-            {/* Footer Layer */}
-            <footer id="contact" className="relative z-10 py-12 px-6 lg:px-12 border-t border-white/5 bg-[#0f172a]/50">
-                <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="flex flex-col gap-2 text-center md:text-left">
-                        <span className="text-2xl font-black text-white tracking-tight">Muhammad Abu Huraira.</span>
-                        <span className="text-slate-400 font-light text-sm">Building Intelligent & Premium Digital Experiences.</span>
+            {/* Expanded Footer Layer */}
+            <footer id="contact" className="relative z-10 py-16 px-6 lg:px-12 border-t border-white/10 bg-gradient-to-b from-[#020617]/90 to-[#000000] backdrop-blur-3xl shadow-[0_-30px_60px_rgba(0,0,0,0.5)]">
+                <div className="max-w-6xl mx-auto flex flex-col gap-12">
+
+                    {/* Top Section */}
+                    <div className="flex flex-col md:flex-row items-start justify-between gap-10">
+                        <div className="flex flex-col gap-4 max-w-sm">
+                            <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 tracking-tight">Muhammad Abu Huraira.</span>
+                            <p className="text-slate-400 font-light leading-relaxed">
+                                Building Intelligent & Premium Digital Experiences. Constantly exploring the deep universe of AI and beautiful interface design.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-12 sm:gap-24 md:text-right">
+                            {/* Contact Info */}
+                            <div className="flex flex-col gap-4">
+                                <h4 className="text-white font-bold tracking-widest uppercase text-sm mb-2">Get in Touch</h4>
+                                <a href="mailto:huraira.eqeel@gmail.com" className="flex items-center md:justify-end gap-3 text-slate-400 hover:text-[#38bdf8] transition-colors group">
+                                    <span className="font-medium">huraira.eqeel@gmail.com</span>
+                                    <Mail className="w-5 h-5 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
+                                </a>
+                                <div className="flex items-center md:justify-end gap-3 text-slate-400 select-all group">
+                                    <span className="font-medium leading-relaxed max-w-[150px]">Lahore, Pakistan</span>
+                                </div>
+                            </div>
+
+                            {/* Socials */}
+                            <div className="flex flex-col gap-4">
+                                <h4 className="text-white font-bold tracking-widest uppercase text-sm mb-2">Socials</h4>
+                                <div className="flex items-center md:justify-end gap-6">
+                                    <a href="https://github.com/hurairamuzammal" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 bg-[#0f172a] flex items-center justify-center text-slate-400 hover:text-white hover:border-[#38bdf8]/50 hover:bg-[#38bdf8]/10 transition-all hover:-translate-y-1">
+                                        <Github className="w-5 h-5" />
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/muhammad-abu-huraira-a44a60248/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 bg-[#0f172a] flex items-center justify-center text-slate-400 hover:text-white hover:border-[#38bdf8]/50 hover:bg-[#38bdf8]/10 transition-all hover:-translate-y-1">
+                                        <Linkedin className="w-5 h-5" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="flex items-center gap-6">
-                        <a href="mailto:huraira.eqeel@gmail.com" className="flex items-center gap-2 text-white/50 hover:text-[#38bdf8] transition-colors group">
-                            <Mail className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                            <span className="font-medium text-sm">huraira.eqeel@gmail.com</span>
-                        </a>
-                        <a href="https://github.com/hurairamuzammal" target="_blank" rel="noreferrer" className="text-white/50 hover:text-white transition-colors hover:scale-110">
-                            <Github className="w-6 h-6" />
-                        </a>
-                        <a href="https://www.linkedin.com/in/muhammad-abu-huraira-a44a60248/" target="_blank" rel="noreferrer" className="text-white/50 hover:text-white transition-colors hover:scale-110">
-                            <Linkedin className="w-6 h-6" />
-                        </a>
+                    {/* Divider & Copyright */}
+                    <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-4"></div>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-light text-slate-500">
+                        <span>© 2026 Muhammad Abu Huraira. All rights reserved.</span>
+                        <span className="flex items-center gap-1">Designed with <span className="text-[#ef4444] text-lg animate-pulse">♥</span> from deep space</span>
                     </div>
                 </div>
             </footer>
